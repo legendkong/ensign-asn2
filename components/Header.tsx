@@ -19,24 +19,31 @@ export default function Header() {
   return (
     <header
       className={`${
-        isActive ? 'bg-white py-4 shadow-md' : 'bg-[#CEFA05] py-6'
+        isActive ? 'bg-blue-200 py-4 shadow-md' : 'bg-white py-6'
       } fixed w-full z-10 transition-all`}
     >
       <div className="container mx-auto flex items-center justify-between h-full">
         <Link href={`/`}>
           <div>
-            <Image src="/logo.png" alt="" width={100} height={100}></Image>
+            <Image src="/logo.png" alt="" width={140} height={100}></Image>
           </div>
         </Link>
-        {/* cart */}
-
-        <div
-          onClick={() => setIsOpen(!isOpen)}
-          className="cursor-pointer flex relative"
-        >
-          <FaShoppingCart className="text-2xl" />
-          <div className="bg-red-500 absolute -right-2 -bottom-2 text-[12px] w-[18px] h-[18px] text-white rounded-full flex justify-center items-center">
-            {itemAmount}
+        <div className="flex items-center">
+          {/* cta */}
+          <Link href={`https://www.ensigninfosecurity.com/`} target="_blank">
+            <button className="bg-yellow-200 mr-10 hover:bg-blue-700 hover:text-white border-solid border-2 border-blue-500 text-black font-semibold py-2 px-8 rounded-3xl">
+              Get In Touch
+            </button>
+          </Link>
+          {/* cart */}
+          <div
+            onClick={() => setIsOpen(!isOpen)}
+            className="cursor-pointer flex relative"
+          >
+            <FaShoppingCart className="text-2xl" />
+            <div className="bg-red-500 absolute -right-2 -bottom-2 text-[12px] w-[18px] h-[18px] text-white rounded-full flex justify-center items-center">
+              {itemAmount}
+            </div>
           </div>
         </div>
       </div>
