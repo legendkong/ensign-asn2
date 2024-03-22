@@ -28,7 +28,7 @@ export default function Product({ product }: any) {
               </div>
             </button>
             <Link
-              href={`/product/${id}`}
+              href={`/products/${id}`}
               className="w-12 h-12 bg-white flex justify-center items-center text-primary drop-shadow-xl"
             >
               <BsEyeFill />
@@ -39,7 +39,7 @@ export default function Product({ product }: any) {
       {/* category, title, price */}
       <div>
         <div className="text-sm capitalize text-gray-500 mb-1">{category}</div>
-        <Link href={`/product/${id}`}>
+        <Link href={`/products/${id}`}>
           <h2 className="font-semibold mb-1">{title}</h2>
         </Link>
         <div className="font-semibold">$ {price}</div>

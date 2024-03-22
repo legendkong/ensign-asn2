@@ -1,3 +1,4 @@
+'use client';
 import { useContext, useState, useEffect } from 'react';
 import { SidebarContext } from '@/contexts/SidebarContext';
 import { FaShoppingCart } from 'react-icons/fa';

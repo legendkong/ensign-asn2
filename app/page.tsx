@@ -8,6 +8,7 @@ import ProductProvider, { ProductContext } from '@/contexts/ProductContext';
 import Product from '@/components/Product';
 import SidebarProvider from '@/contexts/SidebarContext';
 import CartProvider from '@/contexts/CartContext';
+import ProductDetails from './products/[id]/page';
 
 function HomeContent() {
   // get products from product contetx
@@ -20,7 +21,6 @@ function HomeContent() {
   return (
     <div>
       <Header />
-
       <section className="py-16">
         <Hero />
         <div className="container mx-auto">
@@ -40,7 +40,7 @@ function HomeContent() {
   );
 }
 
-export default function Home({ pageProps }: any) {
+export default function Home() {
   return (
     <SidebarProvider>
       <CartProvider>

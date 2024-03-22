@@ -2,7 +2,9 @@
 import { createContext, useState, useEffect } from 'react';
 
 // create context
-export const ProductContext = createContext({ products: [] });
+export const ProductContext = createContext<{ products: any[] }>({
+  products: [],
+});
 
 const ProductProvider = ({ children }: any) => {
   // products state
