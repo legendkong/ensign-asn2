@@ -4,12 +4,21 @@ import { useState, createContext, useEffect } from 'react';
 export const CartContext = createContext({});
 
 const CartProvider = ({ children }: any) => {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart]: any = useState(() => {
+    try {
+      // attempt to get the cart from local storage
+      const localData = localStorage.getItem('cart');
+      return localData ? JSON.parse(localData) : [];
+    } catch {
+      // if error, default to empty array
+      return [];
+    }
+  });
   const [itemAmount, setItemAmount] = useState(0);
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    const total = cart.reduce((accumulator, currentItem: any) => {
+    const total = cart.reduce((accumulator: any, currentItem: any) => {
       return accumulator + currentItem.price * currentItem.amount;
     }, 0);
     setTotal(total);
@@ -18,22 +27,29 @@ const CartProvider = ({ children }: any) => {
   // update item amount
   useEffect(() => {
     if (cart) {
-      const amount = cart.reduce((accumulator, currentItem: any) => {
+      const amount = cart.reduce((accumulator: any, currentItem: any) => {
         return accumulator + currentItem.amount;
       }, 0);
       setItemAmount(amount);
+      // Save cart to localStorage whenever it changes
+      try {
+        localStorage.setItem('cart', JSON.stringify(cart));
+      } catch {
+        // Handle errors, e.g., localStorage not available
+        console.log('local storage not avail');
+      }
     }
   }, [cart]);
 
   // adding to cart
   const addToCart = (product: any, id: any) => {
-    const newItem = { ...product, amount: 1 };
+    const newItem: any = { ...product, amount: 1 };
     // check if item is already in the cart
-    const cartItem = cart.find((item) => {
+    const cartItem: any = cart.find((item: any) => {
       return item.id === id;
     });
     if (cartItem) {
-      const newCart = [...cart].map((item) => {
+      const newCart: any = [...cart].map((item: any) => {
         if (item.id === id) {
           return { ...item, amount: cartItem.amount + 1 };
         } else {
@@ -52,7 +68,7 @@ const CartProvider = ({ children }: any) => {
 
   // removing from cart
   const removeFromCart = (id: any) => {
-    const newCart = cart.filter((item) => {
+    const newCart = cart.filter((item: any) => {
       return item.id !== id;
     });
     setCart(newCart);

@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from 'react';
 import { SidebarContext } from '@/contexts/SidebarContext';
-import { BsBag } from 'react-icons/bs';
+import { FaShoppingCart } from 'react-icons/fa';
 import { CartContext } from '@/contexts/CartContext';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -34,7 +34,7 @@ export default function Header() {
           onClick={() => setIsOpen(!isOpen)}
           className="cursor-pointer flex relative"
         >
-          <BsBag className="text-2xl" />
+          <FaShoppingCart className="text-2xl" />
           <div className="bg-red-500 absolute -right-2 -bottom-2 text-[12px] w-[18px] h-[18px] text-white rounded-full flex justify-center items-center">
             {itemAmount}
           </div>
